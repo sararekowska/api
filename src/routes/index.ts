@@ -54,14 +54,14 @@ router.get('/:type/all', async (ctx) => {
     );
 
     ctx.body = entityObjects.filter((entity) => {
-      if(!entity) return;
+      if (!entity) return;
 
       for (const key of Object.keys(params)) {
         const value = entity[key];
 
         switch (typeof value) {
           case 'string':
-            if (!value.includes(params[key])) return false;
+            if (!value.includes(params[key] as string)) return false;
             break;
           default:
             if (value != params[key]) return false;
